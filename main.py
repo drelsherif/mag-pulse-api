@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify
 import numpy as np
 import joblib
@@ -86,30 +87,42 @@ def make_prediction(fft_data, model_name):
     try:
         if model_name == "logistic" and logistic_model is not None:
             X = preprocess_fft(fft_data)
-            # Flatten for sklearn models
-            X_flat = X.flatten().reshape(1, -1)
-            pred_proba = logistic_model.predict_proba(X_flat)[0]
-            pred = logistic_model.predict(X_flat)[0]
+            # Flatten for sklearn models and pad/truncate to expected size
+            X_flat = X.flatten()
+            X_padded = pad_or_truncate_features(X_flat, target_size=100)
+            X_input = X_padded.reshape(1, -1)
+            
+            pred_proba = logistic_model.predict_proba(X_input)[0]
+            pred = logistic_model.predict(X_input)[0]
             confidence = float(np.max(pred_proba))
             
         elif model_name == "forest" and forest_model is not None:
             X = preprocess_fft(fft_data)
-            # Flatten for sklearn models
-            X_flat = X.flatten().reshape(1, -1)
-            pred_proba = forest_model.predict_proba(X_flat)[0]
-            pred = forest_model.predict(X_flat)[0]
+            # Flatten for sklearn models and pad/truncate to expected size
+            X_flat = X.flatten()
+            X_padded = pad_or_truncate_features(X_flat, target_size=100)
+            X_input = X_padded.reshape(1, -1)
+            
+            pred_proba = forest_model.predict_proba(X_input)[0]
+            pred = forest_model.predict(X_input)[0]
             confidence = float(np.max(pred_proba))
             
         elif model_name == "lstm" and lstm_model is not None:
-            X = preprocess_fft(fft_data)
-            # LSTM expects 3D input: (batch_size, timesteps, features)
-            if len(X.shape) == 3:
-                pred_proba = lstm_model.predict(X, verbose=0)[0]
-            else:
-                # Reshape if needed
-                X = X.reshape(1, -1, 1)
-                pred_proba = lstm_model.predict(X, verbose=0)[0]
+            # Use simpler processing for LSTM to avoid memory issues
+            X = np.array(fft_data, dtype=np.float32)
             
+            # Normalize
+            if np.max(np.abs(X)) > 0:
+                X = X / np.max(np.abs(X))
+            
+            # Pad or truncate to consistent size for LSTM
+            X_padded = pad_or_truncate_features(X, target_size=64)
+            
+            # Reshape for LSTM: (batch_size, timesteps, features)
+            X_input = X_padded.reshape(1, 64, 1)
+            
+            # Predict with reduced memory usage
+            pred_proba = lstm_model.predict(X_input, verbose=0, batch_size=1)[0]
             pred = np.argmax(pred_proba)
             confidence = float(np.max(pred_proba))
             
@@ -132,6 +145,25 @@ def make_prediction(fft_data, model_name):
     except Exception as e:
         logger.error(f"Prediction error with {model_name}: {str(e)}")
         return None, f"Prediction failed: {str(e)}"
+
+def pad_or_truncate_features(features, target_size):
+    """Pad with zeros or truncate features to match expected model input size"""
+    try:
+        features = np.array(features, dtype=np.float32)
+        
+        if len(features) == target_size:
+            return features
+        elif len(features) < target_size:
+            # Pad with zeros
+            padding = np.zeros(target_size - len(features), dtype=np.float32)
+            return np.concatenate([features, padding])
+        else:
+            # Truncate to target size
+            return features[:target_size]
+            
+    except Exception as e:
+        logger.error(f"Error in pad_or_truncate_features: {e}")
+        return np.zeros(target_size, dtype=np.float32)
 
 @app.route("/", methods=["GET"])
 def index():
