@@ -1,0 +1,7 @@
+
+services:
+  - type: web
+    name: magpulse-api
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn main:app
