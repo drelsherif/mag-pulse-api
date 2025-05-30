@@ -83,5 +83,50 @@ def approve_prediction():
 
     return jsonify({"status": "approval logged"})
 
+
+@app.route('/retry_predict', methods=['POST'])
+def retry_predict():
+    data = request.get_json()
+    fft_data_batches = data.get("fft_batches")  # list of peak candidates
+    model_names = ["logistic", "forest", "lstm"]
+    responses = []
+
+    if not fft_data_batches or not isinstance(fft_data_batches, list):
+        return jsonify({"error": "fft_batches must be a list"}), 400
+
+    for i, fft_data in enumerate(fft_data_batches):
+        batch_result = {"peak_index": i, "results": []}
+        fft_array = np.array(fft_data).reshape(1, -1)
+
+        # Logistic
+        try:
+            log_pred = int(logistic_model.predict(fft_array)[0])
+            log_conf = float(logistic_model.predict_proba(fft_array)[0][1])
+            batch_result["results"].append({"model": "logistic", "prediction": log_pred, "confidence": log_conf})
+        except Exception as e:
+            batch_result["results"].append({"model": "logistic", "error": str(e)})
+
+        # Forest
+        try:
+            for_pred = int(forest_model.predict(fft_array)[0])
+            for_conf = float(forest_model.predict_proba(fft_array)[0][1])
+            batch_result["results"].append({"model": "forest", "prediction": for_pred, "confidence": for_conf})
+        except Exception as e:
+            batch_result["results"].append({"model": "forest", "error": str(e)})
+
+        # LSTM
+        try:
+            lstm_input = preprocess_fft(fft_data)
+            lstm_out = lstm_model.predict(lstm_input)[0]
+            lstm_pred = int(np.argmax(lstm_out))
+            lstm_conf = float(np.max(lstm_out))
+            batch_result["results"].append({"model": "lstm", "prediction": lstm_pred, "confidence": lstm_conf})
+        except Exception as e:
+            batch_result["results"].append({"model": "lstm", "error": str(e)})
+
+        responses.append(batch_result)
+
+    return jsonify({"retries": responses})
+
 if __name__ == '__main__':
     app.run(debug=True)
