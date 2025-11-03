@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Quizzes (iPad-Friendly)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        .quiz-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .question-block {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .question-block p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-block label {
+            display: block;
+            margin: 5px 0 5px 25px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .question-block input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .check-btn {
+            display: block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007aff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            /* Added for better touch response */
+            -webkit-appearance: none; 
+        }
+        .check-btn:hover {
+            background-color: #0056b3;
+        }
+        .check-btn:disabled {
+            background-color: #c0c0c0;
+            cursor: not-allowed;
+        }
+
+        .feedback-message {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .correct-label {
+            background-color: #e0f8e0;
+            border: 1px solid #00c851;
+        }
+        .incorrect-label {
+            background-color: #f8e0e0;
+            border: 1px solid #c80000;
+        }
+        .feedback-correct {
+            color: #006400;
+        }
+        .feedback-incorrect {
+            color: #c80000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>📜 Mesopotamia Vocabulary Quiz</h1>
+        <p style="text-align:center;">(Check your answer for each question.)</p>
+        
+        <div class="question-block" data-answer="b">
+            <p>1. A region with good conditions for growing crops that stretches from the Mediterranean coast east through Mesopotamia to the Persian Gulf.</p>
+            <label><input type="radio" name="q1" value="a"> Ziggurat</label>
+            <label><input type="radio" name="q1" value="b"> Fertile Crescent</label>
+            <label><input type="radio" name="q1" value="c"> Mesopotamia</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a">
+            <p>2. A wide, flat plain in between the Tigris and Euphrates rivers in present-day Iraq.</p>
+            <label><input type="radio" name="q2" value="a"> Mesopotamia</label>
+            <label><input type="radio" name="q2" value="b"> City-state</label>
+            <label><input type="radio" name="q2" value="c"> Fertile Crescent</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>3. To supply water to.</p>
+            <label><input type="radio" name="q3" value="a"> Barter</label>
+            <label><input type="radio" name="q3" value="b"> Prosper</label>
+            <label><input type="radio" name="q3" value="c"> Irrigate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="b">
+            <p>4. A trading system in which people exchange goods directly without using money.</p>
+            <label><input type="radio" name="q4" value="a"> Cuneiform</label>
+            <label><input type="radio" name="q4" value="b"> Barter</label>
+            <label><input type="radio" name="q4" value="c"> Polytheism</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a">
+            <p>5. Separate, different.</p>
+            <label><input type="radio" name="q5" value="a"> Distinct</label>
+            <label><input type="radio" name="q5" value="b"> Irrigate</label>
+            <label><input type="radio" name="q5" value="c"> Prosper</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>6. Worship of many gods or deities.</p>
+            <label><input type="radio" name="q6" value="a"> Ziggurat</label>
+            <label><input type="radio" name="q6" value="b"> City-state</label>
+            <label><input type="radio" name="q6" value="c"> Polytheism</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a">
+            <p>7. A brick, pyramid-shaped Mesopotamian temple.</p>
+            <label><input type="radio" name="q7" value="a"> Ziggurat</label>
+            <label><input type="radio" name="q7" value="b"> Cuneiform</label>
+            <label><input type="radio" name="q7" value="c"> Fertile Crescent</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>8. An independent state consisting of a city and its surrounding territory.</p>
+            <label><input type="radio" name="q8" value="a"> Mesopotamia</label>
+            <label><input type="radio" name="q8" value="b"> Barter</label>
+            <label><input type="radio" name="q8" value="c"> City-state</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="b">
+            <p>9. A Mesopotamian system of writing that uses triangular-shaped symbols.</p>
+            <label><input type="radio" name="q9" value="a"> Polytheism</label>
+            <label><input type="radio" name="q9" value="b"> Cuneiform</label>
+            <label><input type="radio" name="q9" value="c"> Distinct</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>10. Gain in wealth.</p>
+            <label><input type="radio" name="q10" value="a"> Irrigate</label>
+            <label><input type="radio" name="q10" value="b"> Barter</label>
+            <label><input type="radio" name="q10" value="c"> Prosper</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+    </div>
+
+    <div class="quiz-container">
+        <h1>📚 Vocabulary Unit 3 Review</h1>
+        <p style="text-align:center;">(Check your answer for each question.)</p>
+
+        <h3>Part 1: Definitions</h3>
+        
+        <div class="question-block" data-answer="b" data-synonym="bombardment">
+            <p>1. A rapid, large scale outpouring of something</p>
+            <label><input type="radio" name="q11" value="a"> Bigot</label>
+            <label><input type="radio" name="q11" value="b"> Barrage</label>
+            <label><input type="radio" name="q11" value="c"> Enigma</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a" data-synonym="prejudiced">
+            <p>2. An intolerant, prejudiced, or biased person</p>
+            <label><input type="radio" name="q12" value="a"> Bigot</label>
+            <label><input type="radio" name="q12" value="b"> Pacifist</label>
+            <label><input type="radio" name="q12" value="c"> Sage</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c" data-synonym="nominate">
+            <p>3. To appoint</p>
+            <label><input type="radio" name="q13" value="a"> Restrict</label>
+            <label><input type="radio" name="q13" value="b"> Waylay</label>
+            <label><input type="radio" name="q13" value="c"> Designate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a" data-synonym="dissimilarity">
+            <p>4. Difference, variety</p>
+            <label><input type="radio" name="q14" value="a"> Diversity</label>
+            <label><input type="radio" name="q14" value="b"> Illusion</label>
+            <label><input type="radio" name="q14" value="c"> Vocation</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="b" data-synonym="mystery">
+            <p>5. Someone or something that is extremely puzzling</p>
+            <label><input type="radio" name="q15" value="a"> Terrain</label>
+            <label><input type="radio" name="q15" value="b"> Enigma</label>
+            <label><input type="radio" name="q15" value="c"> Barrage</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c" data-synonym="relish">
+            <p>6. To take great personal joy in</p>
+            <label><input type="radio" name="q16" value="a"> Motivate</label>
+            <label><input type="radio" name="q16" value="b"> Slake</label>
+            <label><input type="radio" name="q16" value="c"> Gloat</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="worldwide">
+            <p>7. Of, relating to, or involving the entire world</p>
+            <label><input type="radio" name="q17" value="a"> Global</label>
+            <label><input type="radio" name="q17" value="b"> Vocation</label>
+            <label><input type="radio" name="q17" value="c"> Terrain</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="delusion">
+            <p>8. A false idea</p>
+            <label><input type="radio" name="q18" value="a"> Illusion</label>
+            <label><input type="radio" name="q18" value="b"> Enigma</label>
+            <label><input type="radio" name="q18" value="c"> Vow</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c" data-synonym="provoke">
+            <p>9. To make very angry, enrage</p>
+            <label><input type="radio" name="q19" value="a"> Wither</label>
+            <label><input type="radio" name="q19" value="b"> Restrict</label>
+            <label><input type="radio" name="q19" value="c"> Infuriate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b" data-synonym="encourage">
+            <p>10. To provide with a reason for doing</p>
+            <label><input type="radio" name="q20" value="a"> Gloat</label>
+            <label><input type="radio" name="q20" value="b"> Motivate</label>
+            <label><input type="radio" name="q20" value="c"> Designate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="peacemaker">
+            <p>11. One who is against war or the use of violence</p>
+            <label><input type="radio" name="q21" value="a"> Pacifist</label>
+            <label><input type="radio" name="q21" value="b"> Bigot</label>
+            <label><input type="radio" name="q21" value="c"> Sage</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c" data-synonym="line">
+            <p>12. A line of people waiting for something</p>
+            <label><input type="radio" name="q22" value="a"> Barrage</label>
+            <label><input type="radio" name="q22" value="b"> Vocation</label>
+            <label><input type="radio" name="q22" value="c"> Queue</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b" data-synonym="hold back">
+            <p>13. To confine</p>
+            <label><input type="radio" name="q23" value="a"> Slake</label>
+            <label><input type="radio" name="q23" value="b"> Restrict</label>
+            <label><input type="radio" name="q23" value="c"> Wither</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="wise">
+            <p>14. Wise</p>
+            <label><input type="radio" name="q24" value="a"> Sage</label>
+            <label><input type="radio" name="q24" value="b"> Global</label>
+            <label><input type="radio" name="q24" value="c"> Pacifist</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c" data-synonym="ease">
+            <p>15. To satisfy, relieve, or bring to an end</p>
+            <label><input type="radio" name="q25" value="a"> Gloat</label>
+            <label><input type="radio" name="q25" value="b"> Infuriate</label>
+            <label><input type="radio" name="q25" value="c"> Slake</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b" data-synonym="the ground">
+            <p>16. The landscape</p>
+            <label><input type="radio" name="q26" value="a"> Diversity</label>
+            <label><input type="radio" name="q26" value="b"> Terrain</label>
+            <label><input type="radio" name="q26" value="c"> Queue</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="career">
+            <p>17. Any trade, profession, or occupation</p>
+            <label><input type="radio" name="q27" value="a"> Vocation</label>
+            <label><input type="radio" name="q27" value="b"> Vow</label>
+            <label><input type="radio" name="q27" value="c"> Enigma</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c" data-synonym="pledge">
+            <p>18. A solemn or sacred promise or pledge</p>
+            <label><input type="radio" name="q28" value="a"> Illusion</label>
+            <label><input type="radio" name="q28" value="b"> Waylay</label>
+            <label><input type="radio" name="q28" value="c"> Vow</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b" data-synonym="ambush">
+            <p>19. To lie in wait for an attack, ambush</p>
+            <label><input type="radio" name="q29" value="a"> Restrict</label>
+            <label><input type="radio" name="q29" value="b"> Waylay</label>
+            <label><input type="radio" name="q29" value="c"> Gloat</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a" data-synonym="shrivel">
+            <p>20. To dry up, wilt, sag</p>
+            <label><input type="radio" name="q30" value="a"> Wither</label>
+            <label><input type="radio" name="q30" value="b"> Slake</label>
+            <label><input type="radio" name="q30" value="c"> Infuriate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <h3>Part 2: Synonyms</h3>
+
+        <div class="question-block" data-answer="a">
+            <p>21. Synonym for 'bombardment'</p>
+            <label><input type="radio" name="q31" value="a"> Barrage</label>
+            <label><input type="radio" name="q31" value="b"> Queue</label>
+            <label><input type="radio" name="q31" value="c"> Vocation</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>22. Synonym for 'prejudiced'</p>
+            <label><input type="radio" name="q32" value="a"> Sage</label>
+            <label><input type="radio" name="q32" value="b"> Pacifist</label>
+            <label><input type="radio" name="q32" value="c"> Bigot</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b">
+            <p>23. Synonym for 'nominate'</p>
+            <label><input type="radio" name="q33" value="a"> Motivate</label>
+            <label><input type="radio" name="q33" value="b"> Designate</label>
+            <label><input type="radio" name="q33" value="c"> Gloat</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="a">
+            <p>24. Synonym for 'dissimilarity'</p>
+            <label><input type="radio" name="q34" value="a"> Diversity</label>
+            <label><input type="radio" name="q34" value="b"> Terrain</label>
+            <label><input type="radio" name="q34" value="c"> Illusion</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="c">
+            <p>25. Synonym for 'mystery'</p>
+            <label><input type="radio" name="q35" value="a"> Vow</label>
+            <label><input type="radio" name="q35" value="b"> Bigot</label>
+            <label><input type="radio" name="q35" value="c"> Enigma</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b">
+            <p>26. Synonym for 'relish'</p>
+            <label><input type="radio" name="q36" value="a"> Infuriate</label>
+            <label><input type="radio" name-"q36" value="b"> Gloat</label>
+            <label><input type="radio" name="q36" value="c"> Wither</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a">
+            <p>27. Synonym for 'worldwide'</p>
+            <label><input type="radio" name="q37" value="a"> Global</label>
+            <label><input type="radio" name="q37" value="b"> Terrain</label>
+            <label><input type="radio" name="q37" value="c"> Barrage</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c">
+            <p>28. Synonym for 'delusion'</p>
+            <label><input type="radio" name="q38" value="a"> Enigma</label>
+            <label><input type="radio" name="q38" value="b"> Diversity</label>
+            <label><input type="radio" name="q38" value="c"> Illusion</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+        
+        <div class="question-block" data-answer="b">
+            <p>29. Synonym for 'provoke'</p>
+            <label><input type="radio" name="q39" value="a"> Slake</label>
+            <label><input type="radio" name="q39" value="b"> Infuriate</label>
+            <label><input type="radio" name="q39" value="c"> Waylay</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a">
+            <p>30. Synonym for 'encourage'</p>
+            <label><input type="radio" name="q40" value="a"> Motivate</label>
+            <label><input type="radio" name="q40" value="b"> Gloat</label>
+            <label><input type="radio" name="q40" value="c"> Designate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c">
+            <p>31. Synonym for 'peacemaker'</p>
+            <label><input type="radio" name="q41" value="a"> Sage</label>
+            <label><input type="radio" name="q41" value="b"> Bigot</label>
+            <label><input type="radio" name="q41" value="c"> Pacifist</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b">
+            <p>32. Synonym for 'line'</p>
+            <label><input type="radio" name="q42" value="a"> Barrage</label>
+            <label><input type="radio" name="q42" value="b"> Queue</label>
+            <label><input type="radio" name="q42" value="c"> Terrain</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a">
+            <p>33. Synonym for 'hold back'</p>
+            <label><input type="radio" name="q43" value="a"> Restrict</label>
+            <label><input type="radio" name="q43" value="b"> Wither</label>
+            <label><input type="radio" name="q43" value="c"> Designate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c">
+            <p>34. Synonym for 'wise'</p>
+            <label><input type="radio" name="q44" value="a"> Pacifist</label>
+            <label><input type="radio" name="q44" value="b"> Global</label>
+            <label><input type="radio" name="q44" value="c"> Sage</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b">
+            <p>35. Synonym for 'ease'</p>
+            <label><input type="radio" name="q45" value="a"> Gloat</label>
+            <label><input type="radio" name="q45" value="b"> Slake</label>
+            <label><input type="radio" name="q45" value="c"> Infuriate</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a">
+            <p>36. Synonym for 'the ground'</p>
+            <label><input type="radio" name="q46" value="a"> Terrain</label>
+            <label><input type="radio" name="q46" value="b"> Diversity</label>
+            <label><input type="radio" name="q46" value="c"> Queue</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c">
+            <p>37. Synonym for 'career'</p>
+            <label><input type="radio" name="q47" value="a"> Enigma</label>
+            <label><input type="radio" name="q47" value="b"> Vow</label>
+            <label><input type="radio" name="q47" value="c"> Vocation</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="b">
+            <p>38. Synonym for 'pledge'</p>
+            <label><input type="radio" name="q48" value="a"> Illusion</label>
+            <label><input type="radio" name="q48" value="b"> Vow</label>
+            <label><input type="radio" name="q48" value="c"> Waylay</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="a">
+            <p>39. Synonym for 'ambush'</p>
+            <label><input type="radio" name="q49" value="a"> Waylay</label>
+            <label><input type="radio" name="q49" value="b"> Restrict</label>
+            <label><input type="radio" name="q49" value="c"> Gloat</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+        <div class="question-block" data-answer="c">
+            <p>40. Synonym for 'shrivel'</p>
+            <label><input type="radio" name="q50" value="a"> Slake</label>
+            <label><input type="radio" name="q50" value="b"> Infuriate</label>
+            <label><input type="radio" name="q50" value="c"> Wither</label>
+            <button type="button" class="check-btn">Check Answer</button>
+            <div class="feedback-message"></div>
+        </div>
+
+    </div> <script>
+        // SCRIPT FOR PER-QUESTION CHECKING
+        
+        // This is the function that checks the answer
+        function checkQuestionAnswer(event) {
+            // Prevent the browser from also firing a "click" event if it was a "touchend"
+            event.preventDefault(); 
+            
+            const button = event.currentTarget; // Get the button that was pressed
+            const questionBlock = button.closest('.question-block');
+            const feedbackEl = questionBlock.querySelector('.feedback-message');
+            const radios = questionBlock.querySelectorAll('input[type="radio"]');
+            
+            const correctAnswer = questionBlock.dataset.answer;
+            const synonym = questionBlock.dataset.synonym;
+            
+            const selectedRadio = questionBlock.querySelector('input[type="radio"]:checked');
+
+            // Reset all labels
+            questionBlock.querySelectorAll('label').forEach(label => {
+                label.classList.remove('correct-label', 'incorrect-label');
+            });
+
+            if (!selectedRadio) {
+                feedbackEl.textContent = "Please select an answer first.";
+                feedbackEl.className = 'feedback-message feedback-incorrect';
+                return;
+            }
+
+            const selectedLabel = selectedRadio.parentElement;
+            
+            if (selectedRadio.value === correctAnswer) {
+                // --- CORRECT ---
+                selectedLabel.classList.add('correct-label');
+                feedbackEl.className = 'feedback-message feedback-correct';
+                
+                let feedbackText = "Correct!";
+                if (synonym) {
+                    feedbackText += ` Synonym: ${synonym}`;
+                }
+                feedbackEl.textContent = feedbackText;
+
+            } else {
+                // --- INCORRECT ---
+                selectedLabel.classList.add('incorrect-label');
+                feedbackEl.className = 'feedback-message feedback-incorrect';
+                
+                // Find and show the correct label
+                radios.forEach(r => {
+                    if (r.value === correctAnswer) {
+                        r.parentElement.classList.add('correct-label');
+                    }
+                });
+                
+                let feedbackText = "Incorrect. The correct answer is marked in green.";
+                if (synonym) {
+                     feedbackText += ` (Synonym: ${synonym})`;
+                }
+                feedbackEl.textContent = feedbackText;
+            }
+            
+            // Disable all radios and the button for this question
+            radios.forEach(r => r.disabled = true);
+            button.disabled = true;
+        }
+
+        // Find ALL "Check Answer" buttons on the page
+        document.querySelectorAll('.check-btn').forEach(button => {
+            // Attach the function to BOTH "click" (for computers) 
+            // and "touchend" (for touch devices)
+            button.addEventListener('click', checkQuestionAnswer);
+            button.addEventListener('touchend', checkQuestionAnswer);
+        });
+    </script>
+
+</body>
+</html>
